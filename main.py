@@ -2,6 +2,7 @@ from Element import Element
 from Color import Color
 from CellElement import CellElement
 from Score import Score
+from LedMatrix import LedMatrix
 from time import sleep
 import glob
 import random
@@ -19,6 +20,7 @@ class Main:
         self.matrix = []
         self.lost = False
         self.score = Score()
+        self.ledMatrix = LedMatrix(18)
 
 
         self.currentElement: Element = None
@@ -45,8 +47,16 @@ class Main:
         self.lost = self.lost or self.checkForLoose()
         
         self.printMatrix()
+        self.updateMatrix()
+
+    def updateMatrix(self):
+        # pass
+        for x in range(0, len(self.matrix)):
+            for y in range(0, len(self.matrix[0])):
+                self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
 
     def checkForFullLines(self):
+        fullLines = 0
         for y in range(0, len(self.matrix[0])):
             blocks = 0
             for x in range(0, len(self.matrix)):
@@ -54,7 +64,12 @@ class Main:
                     blocks += 1
             if(blocks == len(self.matrix)):
                 self.removeRowAndMoveOthersDown(y)
-                self.score.rowFull()
+                fullLines += 1
+                
+        if(fullLines==1):self.score.rowFull()
+        elif(fullLines > 1):self.score.multipleLineFull(fullLines)
+        
+
 
     def removeRowAndMoveOthersDown(self, row):
         for x in range(0, len(self.matrix)):
@@ -176,11 +191,11 @@ class Main:
 
     def initMovement(self):
         def onRotateLeft():
-            self.currentElement.rotateLeft()
+            self.currentElement.rotateLeft(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onRotateRight():
-            self.currentElement.rotateRight()
+            self.currentElement.rotateRight(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onMoveLeft():

@@ -10,23 +10,31 @@ class Element:
         self.placeMethod = placeMethod
         self.color = color
     
-    def rotateLeft(self):
+    def rotateLeft(self, matrix):
+        original = self.elementData
         self.elementData = [list(row) for row in zip(*self.elementData[::-1])]
+        self.x += self.moveBackForWallCollision(matrix)
+        if(self.checkForBlockCollision(matrix)):
+            self.elementData = original
 
     def getColor(self) -> Color:
         return self.color
 
-    def rotateRight(self):
+    def rotateRight(self, matrix):
         rows = len(self.elementData)
         cols = len(self.elementData[0])
 
         tmpArray2 = [[0] * rows for _ in range(cols)]
+        original = self.elementData
 
         for y in range(cols-1, -1, -1):
             for x in range(rows):
                 tmpArray2[y][x] = self.elementData[x][3-y]
 
         self.elementData = tmpArray2
+        if(self.checkForBlockCollision(matrix)):
+            self.elementData = original
+        self.x += self.moveBackForWallCollision(matrix)
 
 
     def moveDown(self, matrix):
@@ -45,6 +53,34 @@ class Element:
         self.x -= 1
         if(self.checkForWallCollision(matrix)):
             self.x += 1
+
+    def moveBackForWallCollision(self, matrix) -> int:
+        width = len(matrix)
+        print(width)
+        x = self.x
+        left = self.getOffsetLeft()
+        right = self.getOffsetRight()
+
+        distanceRight = width - (x + (4 - left))
+        distanceLeft = x - right
+
+        print(x)
+        print(":")
+        print(distanceRight)
+        print(":")
+        print(distanceLeft)
+
+        if distanceRight < 0:
+            return distanceRight
+        elif distanceLeft < 0:
+            return -distanceLeft
+
+        return 0
+
+
+
+
+
 
     def checkForWallCollision(self, matrix):
         left = self.getOffsetLeft()
