@@ -26,6 +26,9 @@ class Score:
     def elementPlaced(self):
         self.score += Score.ELEMENT_PLACED_POINTS
 
+    def multipleLineFull(self, rows):
+        self.score += (Score.ROW_FULL_POINTS * rows + Score.ROW_FULL_POINTS * rows)
+
     def initAtExit(self):
         atexit.register(self.checkForNewHighScore)
 
