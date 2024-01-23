@@ -22,7 +22,7 @@ class LedMatrix:
 
     def clear(self):
         for i in range(0, self.strip.numPixels()):
-            self.setPixelColor(i, Color(0, 0, 0))
+            self.strip.setPixelColor(i, Color(0, 0, 0))
         self.strip.show()
     
     def setColorAtPixel(self, color: LogicColor, x: int, y: int):
