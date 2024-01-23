@@ -40,5 +40,5 @@ class LedMatrix:
     def show(self):
         self.strip.show()
          
-    WIDTH = 15
-    HEIGHT = 10
+    WIDTH = 10
+    HEIGHT = 15
