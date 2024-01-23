@@ -14,7 +14,7 @@ class LedMatrix:
 
     def __init__(self, pin):
         self.pin = pin
-        self.strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
+        self.strip = PixelStrip(LedMatrix.LED_COUNT, LedMatrix.LED_PIN, LedMatrix.LED_FREQ_HZ, LedMatrix.LED_DMA, LedMatrix.LED_INVERT, LedMatrix.LED_BRIGHTNESS, LedMatrix.LED_CHANNEL)
         self.strip.begin()
 
     def getPin(self):
