@@ -21,6 +21,7 @@ class Main:
         self.lost = False
         self.score = Score()
         self.ledMatrix = LedMatrix(18)
+        self.ledMatrix.clear()
 
 
         self.currentElement: Element = None
@@ -54,6 +55,7 @@ class Main:
         for x in range(0, len(self.matrix)):
             for y in range(0, len(self.matrix[0])):
                 self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
+        self.ledMatrix.show()
 
     def checkForFullLines(self):
         fullLines = 0
