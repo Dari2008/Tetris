@@ -52,9 +52,28 @@ class Main:
 
     def updateMatrix(self):
         # pass
-        for x in range(0, len(self.matrix)):
-            for y in range(0, len(self.matrix[0])):
-                self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
+
+        dataOfElement = self.currentElement.getElementData()
+        xOfElement = self.currentElement.getX()
+        yOfElement = self.currentElement.getY()
+
+        for y in range(0, len(self.matrix[0])):
+            for x in range(0, len(self.matrix)):
+                if True:
+
+                    if(xOfElement <= x <= xOfElement + len(dataOfElement) - 1 and yOfElement <= y <= yOfElement + len(dataOfElement[0]) - 1):
+                        for xx in range(0, len(dataOfElement)):
+                            for yy in range(0, len(dataOfElement[0])):
+                                    if(x == xOfElement + xx and y == yOfElement + yy):
+                                        if(dataOfElement[xx][yy] == 1):
+                                            self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
+                                            continue
+                                        else:
+                                            self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
+                    else:
+                        self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
+                else:
+                    self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
         self.ledMatrix.show()
 
     def checkForFullLines(self):
