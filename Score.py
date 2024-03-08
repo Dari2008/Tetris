@@ -32,6 +32,9 @@ class Score:
     def initAtExit(self):
         atexit.register(self.checkForNewHighScore)
 
+    def isNewHighscore(self):
+        return self.score > self.highScore
+
     def checkForNewHighScore(self):
         if(self.score > self.highScore):
             self.log("New High Score: " + str(self.score))

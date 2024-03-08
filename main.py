@@ -50,7 +50,10 @@ class Main:
         if(self.lost):
             for x in range(0, len(self.matrix)):
                 for y in range(0, len(self.matrix[0])):
-                    self.ledMatrix.setColorAtPixel(Color(255, 0, 0), x, y)
+                    if(self.score.isNewHighscore()):
+                        self.ledMatrix.setColorAtPixel(Color(0, 255, 0), x, y)
+                    else:
+                        self.ledMatrix.setColorAtPixel(Color(255, 0, 0), x, y)
             self.ledMatrix.show()
             self.printMatrix()
             return
