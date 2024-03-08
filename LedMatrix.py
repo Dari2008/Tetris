@@ -30,10 +30,11 @@ class LedMatrix:
         height = LedMatrix.HEIGHT
 
         i = 0
+
         if y % 2 == 0:
-            i = x + y * width
+            i = x + (y * width);
         else:
-            i = width - x + y * width - 1
+            i = width - 1 - x + (y * width);
 
         if(i >= self.strip.numPixels()):return
 
