@@ -212,22 +212,27 @@ class Main:
 
     def initMovement(self):
         def onRotateLeft():
+            print("R")
             self.currentElement.rotateLeft(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onRotateRight():
+            print("R")
             self.currentElement.rotateRight(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onMoveLeft():
+            print("L")
             self.currentElement.moveLeft(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onMoveRight():
+            print("M")
             self.currentElement.moveRight(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onMoveDown():
+            print("D")
             self.currentElement.moveDown(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
