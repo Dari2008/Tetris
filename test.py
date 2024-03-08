@@ -1,10 +1,14 @@
-def calculate_i(x, y):
-    width = 10
-    height = 15
+i = 0;
 
-    if y % 2 == 0:
-        i = x + y
-    else:
-        i = width - x + y
+x = 10;
+y = 15;
 
-    return i
+width = 10;
+height = 15;
+
+if y % 2 == 0:
+    i = x + (y * width);
+else:
+    i = width - x + (y * width);
+
+print(i)
