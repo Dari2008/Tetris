@@ -50,8 +50,6 @@ class Main:
         if(self.lost):
             for x in range(0, len(self.matrix)):
                 for y in range(0, len(self.matrix[0])):
-                    self.matrix[x][y].clearBlock()
-                    self.matrix[x][y].setColor(Color(255, 0, 0))
                     self.ledMatrix.setColorAtPixel(Color(255, 0, 0), x, y)
             self.ledMatrix.show()
             self.printMatrix()
