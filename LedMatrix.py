@@ -28,13 +28,13 @@ class LedMatrix:
     def setColorAtPixel(self, color: LogicColor, x: int, y: int):
         width = LedMatrix.WIDTH
         height = LedMatrix.HEIGHT
-        
+
         i = 0
 
         if y % 2 == 0:
-            i = x + y
+            i = x + y*width
         else:
-            i = width - x + y
+            i = (width - x) + y*width
 
         if(i >= self.strip.numPixels()):return
 
