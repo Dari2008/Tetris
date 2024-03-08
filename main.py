@@ -46,6 +46,16 @@ class Main:
         if(self.currentElement != None and not onlyControllNoMoveDown):
             self.currentElement.moveDown(self.matrix)
         self.lost = self.lost or self.checkForLoose()
+
+        if(self.lost):
+            for x in range(0, len(self.matrix)):
+                for y in range(0, len(self.matrix[0])):
+                    self.matrix[x][y].clearBlock()
+                    self.matrix[x][y].setColor(Color(255, 0, 0))
+                    self.ledMatrix.setColorAtPixel(Color(255, 0, 0), x, y)
+            self.ledMatrix.show()
+            self.printMatrix()
+            return
         
         self.printMatrix()
         self.updateMatrix()
@@ -93,6 +103,7 @@ class Main:
 
 
     def removeRowAndMoveOthersDown(self, row):
+
         for x in range(0, len(self.matrix)):
             self.matrix[x][row].clearBlock()
 

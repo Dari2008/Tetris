@@ -5,10 +5,10 @@ class Element:
 
     def __init__(self, elementData, placeMethod, color):
         self.elementData = elementData
-        self.x = Element.ELEMENT_SPAWN_X
-        self.y = Element.ELEMENT_SPAWN_Y
         self.placeMethod = placeMethod
         self.color = color
+        self.x = round(Element.ELEMENT_SPAWN_X - self.getWidth() // 2)
+        self.y = Element.ELEMENT_SPAWN_Y
     
     def rotateLeft(self, matrix):
         original = self.elementData
@@ -53,6 +53,11 @@ class Element:
         self.x -= 1
         if(self.checkForWallCollision(matrix)):
             self.x += 1
+
+    def getWidth(self) -> int:
+        r = self.getOffsetRight()
+        l = self.getOffsetLeft()
+        return 4 - (r + l)
 
     def moveBackForWallCollision(self, matrix) -> int:
         width = len(matrix)
@@ -190,5 +195,5 @@ class Element:
     def clone(self):
         return Element(copy.deepcopy(self.elementData), self.placeMethod, copy.copy(self.color))
 
-    ELEMENT_SPAWN_X = 0
+    ELEMENT_SPAWN_X = 5
     ELEMENT_SPAWN_Y = 0
