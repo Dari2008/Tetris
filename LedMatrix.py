@@ -28,9 +28,6 @@ class LedMatrix:
     def setColorAtPixel(self, color: LogicColor, x: int, y: int):
         width = LedMatrix.WIDTH
         height = LedMatrix.HEIGHT
-        print(x);
-        print(":")
-        print(y)
         i = 0
 
         if y % 2 == 0:
