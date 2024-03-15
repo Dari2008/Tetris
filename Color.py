@@ -3,7 +3,7 @@ class Color:
     def __init__(self, r, g, b) -> None:
         self.r = int(g if g > 0 and g <= 255 else 0)
         self.g = int(r if r > 0 and r <= 255 else 0)
-        self.b = b if b > 0 and b <= 255 else 0
+        self.b = int(b if b > 0 and b <= 255 else 0)
 
     def getRed(self) -> int:
         return self.r
