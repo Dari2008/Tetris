@@ -25,7 +25,9 @@ class Main:
         self.ledMatrix.clear()
 
 
+
         self.currentElement: Element = None
+        self.tmpElement: Element = self.currentElement
 
         for x in range(10):
             tmp = []
@@ -76,19 +78,34 @@ class Main:
         xOfElement = self.currentElement.getX()
         yOfElement = self.currentElement.getY()
 
+        self.tmpElement.moveDownCompletly(self.matrix, True)
+        xOfTmpElement = self.tmpElement.getX()
+        yOfTmpElement = self.tmpElement.getY()
+
         for y in range(0, len(self.matrix[0])):
             for x in range(0, len(self.matrix)):
-                if True:
-
+                if True:                                
+                    #Check if the current pixel is part of the element
+                    #and render the current element at the smallest y position that it can be
                     if(xOfElement <= x <= xOfElement + len(dataOfElement) - 1 and yOfElement <= y <= yOfElement + len(dataOfElement[0]) - 1):
                         for xx in range(0, len(dataOfElement)):
                             for yy in range(0, len(dataOfElement[0])):
-                                    if(x == xOfElement + xx and y == yOfElement + yy):
-                                        if(dataOfElement[xx][yy] == 1):
-                                            self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
-                                            continue
-                                        else:
-                                            self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
+
+                                if(x == xOfElement + xx and y == yOfElement + yy):
+                                    if(dataOfElement[xx][yy] == 1):
+                                        self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
+                                        continue
+                                    else:
+                                        self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
+                    elif(xOfTmpElement <= x <= xOfTmpElement + len(dataOfElement) - 1 and yOfTmpElement <= y <= yOfTmpElement + len(dataOfElement[0]) - 1):
+                        for xx in range(0, len(dataOfElement)):
+                            for yy in range(0, len(dataOfElement[0])):
+                                if(x == xOfTmpElement + xx and y == yOfTmpElement + yy):
+                                    if(dataOfElement[xx][yy] == 1):
+                                        self.ledMatrix.setColorAtPixel(Color.darken(self.currentElement.getColor(), 80), x, y)
+                                        continue
+                                    else:
+                                        self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
                     else:
                         self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
                 else:
@@ -224,6 +241,7 @@ class Main:
             self.newElementBag()
         num = random.randint(0, len(self.ELEMENTS)-1)
         self.currentElement = self.currentElementBag[num].clone()
+        self.tmpElement = self.currentElement
 
 
     def loadAllElements(self):
