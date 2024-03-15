@@ -90,7 +90,7 @@ class Main:
                     if(xOfElement <= x and xOfElement + len(dataOfElement) -1 >= x and yOfElement <= y and yOfElement + len(dataOfElement[0]) -1 >= y):
                         for xx in range(0, len(dataOfElement)):
                             for yy in range(0, len(dataOfElement[0])):
-                                if(x == xOfElement + xx and y == yOfElement + yy):
+                                if(x == (xOfElement + xx) and y == (yOfElement + yy)):
                                     if(dataOfElement[xx][yy] == 1):
                                         self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
                                         continue
@@ -236,7 +236,8 @@ class Main:
             self.newElementBag()
         num = random.randint(0, len(self.ELEMENTS)-1)
         self.currentElement = self.currentElementBag[num].clone()
-        self.tmpElement = self.currentElement
+        self.currentElementBag.remove(self.currentElementBag[num])
+        self.tmpElement = self.currentElementBag[num].clone()
 
 
     def loadAllElements(self):
