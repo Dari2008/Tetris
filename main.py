@@ -83,27 +83,26 @@ class Main:
         yOfTmpElement = self.tmpElement.getY()
         tmpElementData = self.tmpElement.getElementData()
 
+        print(tmpElementData)
+
         for y in range(0, len(self.matrix[0])):
-            for x in range(0, len(self.matrix)):
-                if True:                                
-                    #Check if the current pixel is part of the element
-                    #and render the current element at the smallest y position that it can be
-                    if(xOfElement <= x and xOfElement + len(dataOfElement) -1 >= x and yOfElement <= y and yOfElement + len(dataOfElement[0]) -1 >= y):
-                        for xx in range(0, len(dataOfElement)):
-                            for yy in range(0, len(dataOfElement[0])):
-                                if(x == (xOfElement + xx) and y == (yOfElement + yy)):
-                                    if(dataOfElement[xx][yy] == 1):
-                                        self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
-                                        continue
-                    elif(xOfTmpElement <= x and xOfTmpElement + len(tmpElementData) - 1 >= x and yOfTmpElement <= y and yOfTmpElement + len(tmpElementData[0]) - 1 >= y):
-                        for xx in range(0, len(tmpElementData)):
-                            for yy in range(0, len(tmpElementData[0])):
-                                if(x == xOfTmpElement + xx and y == yOfTmpElement + yy):
-                                    if(tmpElementData[xx][yy] == 1):
-                                        self.ledMatrix.setColorAtPixel(self.tmpElement.getColor(), x, y)
-                                        continue
-                    else:
-                        self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
+            for x in range(0, len(self.matrix)): 
+                #Check if the current pixel is part of the element
+                #and render the current element at the smallest y position that it can be
+                if(xOfElement <= x and xOfElement + len(dataOfElement) -1 >= x and yOfElement <= y and yOfElement + len(dataOfElement[0]) -1 >= y):
+                    for xx in range(0, len(dataOfElement)):
+                        for yy in range(0, len(dataOfElement[0])):
+                            if(x == (xOfElement + xx) and y == (yOfElement + yy)):
+                                if(dataOfElement[xx][yy] == 1):
+                                    self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
+                                    continue
+                elif(xOfTmpElement <= x and xOfTmpElement + len(tmpElementData) - 1 >= x and yOfTmpElement <= y and yOfTmpElement + len(tmpElementData[0]) - 1 >= y):
+                    for xx in range(0, len(tmpElementData)):
+                        for yy in range(0, len(tmpElementData[0])):
+                            if(x == xOfTmpElement + xx and y == yOfTmpElement + yy):
+                                if(tmpElementData[xx][yy] == 1):
+                                    self.ledMatrix.setColorAtPixel(self.tmpElement.getColor(), x, y)
+                                    continue
                 else:
                     self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
         self.ledMatrix.show()
@@ -151,6 +150,7 @@ class Main:
         return False
 
     def placeElement(self, element: Element):
+        self.tmpElementData = None
         xOffset = element.getX()
         yOffset = element.getY()
         offsetOfFirstElement = element.getOffsetBottom()
