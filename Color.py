@@ -16,16 +16,16 @@ class Color:
     
     @staticmethod
     def lighten(color, amount):
-        r = color.getRed() + amount
-        g = color.getGreen() + amount
-        b = color.getBlue() + amount
+        r = color.getRed() * 1 + (amount/100)
+        g = color.getGreen() * 1 + (amount/100)
+        b = color.getBlue() * 1 + (amount/100)
         return Color(g, r, b)
     
     @staticmethod
     def darken(color, amount):
-        r = color.getRed() - amount
-        g = color.getGreen() - amount
-        b = color.getBlue() - amount
+        r = color.getRed() * 1 - (amount/100)
+        g = color.getGreen() * 1 - (amount/100)
+        b = color.getBlue() * 1 - (amount/100)
         return Color(g, r, b)
     
     def __str__(self) -> str:
