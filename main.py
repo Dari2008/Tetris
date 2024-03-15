@@ -101,13 +101,6 @@ class Main:
                                 if(dataOfElement[xx][yy] == 1):
                                     self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
                                     continue
-                elif(xOfTmpElement <= x and xOfTmpElement + len(tmpElementData) - 1 >= x and yOfTmpElement <= y and yOfTmpElement + len(tmpElementData[0]) - 1 >= y):
-                    for xx in range(0, len(tmpElementData)):
-                        for yy in range(0, len(tmpElementData[0])):
-                            if(x == xOfTmpElement + xx and y == yOfTmpElement + yy):
-                                if(tmpElementData[xx][yy] == 1):
-                                    self.ledMatrix.setColorAtPixel(Color.darken(self.tmpElement.getColor(), 90), x, y)
-                                    continue
                 else:
                     self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
         self.ledMatrix.show()
