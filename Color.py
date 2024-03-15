@@ -19,14 +19,14 @@ class Color:
         r = color.getRed() + amount
         g = color.getGreen() + amount
         b = color.getBlue() + amount
-        return Color(r, g, b)
+        return Color(g, r, b)
     
     @staticmethod
     def darken(color, amount):
         r = color.getRed() - amount
         g = color.getGreen() - amount
         b = color.getBlue() - amount
-        return Color(r, g, b)
+        return Color(g, r, b)
     
     def __str__(self) -> str:
         return str(self.r) + ":" + str(self.g) + ":" + str(self.b)
