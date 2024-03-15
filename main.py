@@ -43,6 +43,7 @@ class Main:
             self.updateGameFrame()
 
     def newElementBag(self):
+        print("new Bag created:")
         self.currentElementBag = Main.ELEMENTS.copy()
 
         for element in Main.ELEMENTS.copy():
@@ -158,6 +159,7 @@ class Main:
 
 
     def printMatrix(self, showCurrentElement=True):
+        return
         spacer = ""
         result = ""
         dataOfElement = self.currentElement.getElementData()
