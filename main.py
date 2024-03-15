@@ -16,7 +16,7 @@ class Main:
     def __init__(self) -> None:
         
         self.loadAllElements()
-        self.currentElementBag = Main.ELEMENTS.copy()
+        self.newElementBag()
 
         self.matrix = []
         self.lost = False
@@ -41,6 +41,12 @@ class Main:
             sleep(1*self.score.getMultiplier())
             if(self.lost):break
             self.updateGameFrame()
+
+    def newElementBag(self):
+        self.currentElementBag = Main.ELEMENTS.clone()
+
+        for element in Main.ELEMENTS.clone():
+            self.currentElementBag.append(element.clone())
 
     def updateGameFrame(self, onlyControllNoMoveDown=False):
         if(self.lost): return
@@ -213,7 +219,7 @@ class Main:
         
     def newRandomElement(self):
         if(len(self.currentElementBag) == 0):
-            self.currentElementBag = Main.ELEMENTS.copy()
+            self.newElementBag()
         num = random.randint(0, len(self.ELEMENTS)-1)
         self.currentElement = self.currentElementBag[num].clone()
 
