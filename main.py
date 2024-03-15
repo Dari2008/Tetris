@@ -78,6 +78,11 @@ class Main:
         xOfElement = self.currentElement.getX()
         yOfElement = self.currentElement.getY()
 
+
+        self.tmpElement.setX(self.currentElement.getX())
+        self.tmpElement.setY(self.currentElement.getY())
+        self.tmpElement.setElementData(self.currentElement.getElementData())
+
         self.tmpElement.moveDownCompletly(self.matrix, True)
         xOfTmpElement = self.tmpElement.getX()
         yOfTmpElement = self.tmpElement.getY()

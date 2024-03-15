@@ -187,6 +187,15 @@ class Element:
     def getY(self) -> int:
         return self.y
     
+    def setX(self, x):
+        self.x = x
+
+    def setY(self, y):
+        self.y = y
+
+    def setElementData(self, elementData):
+        self.elementData = elementData
+    
     def getElementData(self):
         return self.elementData
 
