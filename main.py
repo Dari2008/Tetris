@@ -106,7 +106,7 @@ class Main:
                         for yy in range(0, len(tmpElementData[0])):
                             if(x == xOfTmpElement + xx and y == yOfTmpElement + yy):
                                 if(tmpElementData[xx][yy] == 1):
-                                    self.ledMatrix.setColorAtPixel(self.tmpElement.getColor(), x, y)
+                                    self.ledMatrix.setColorAtPixel(Color.darken(self.tmpElement.getColor(), 40), x, y)
                                     continue
                 else:
                     self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
