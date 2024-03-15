@@ -235,28 +235,27 @@ class Main:
 
     def initMovement(self):
         def onRotateLeft():
-            print("R")
             self.currentElement.rotateLeft(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onRotateRight():
-            print("R")
             self.currentElement.rotateRight(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onMoveLeft():
-            print("L")
             self.currentElement.moveLeft(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onMoveRight():
-            print("M")
             self.currentElement.moveRight(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onMoveDown():
-            print("D")
             self.currentElement.moveDown(self.matrix)
+            self.updateGameFrame(onlyControllNoMoveDown=True)
+
+        def onMoveCopletlyDown():
+            self.currentElement.moveDownCompletly(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         keyboard.add_hotkey('a', onRotateRight)
@@ -264,6 +263,7 @@ class Main:
         keyboard.add_hotkey('left', onMoveLeft)
         keyboard.add_hotkey('right', onMoveRight)
         keyboard.add_hotkey('down', onMoveDown)
+        keyboard.add_hotkey('space', onMoveCopletlyDown)
 
 
 if __name__ == "__main__":

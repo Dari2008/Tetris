@@ -54,6 +54,12 @@ class Element:
         if(self.checkForWallCollision(matrix)):
             self.x += 1
 
+    def moveDownCompletly(self, matrix):
+        while not self.checkForBlockCollision(matrix):
+            self.y += 1
+        self.y -= 1
+        self.placeMethod(self)
+
     def getWidth(self) -> int:
         r = self.getOffsetRight()
         l = self.getOffsetLeft()
