@@ -101,6 +101,10 @@ class Main:
                                 if(dataOfElement[xx][yy] == 1):
                                     self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
                                     continue
+                                else:
+                                    self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
+                            else:
+                                self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
                 else:
                     self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
         self.ledMatrix.show()
