@@ -94,7 +94,7 @@ class Main:
             for x in range(0, len(self.matrix)):                        
                 #Check if the current pixel is part of the element
                 #and render the current element at the smallest y position that it can be
-                if(xOfElement <= x and xOfElement + len(dataOfElement) -1 >= x and yOfElement <= y and yOfElement + len(dataOfElement[0]) -1 >= y):
+                if(xOfElement <= x <= xOfElement + len(dataOfElement) -1 and yOfElement <= y <= yOfElement + len(dataOfElement[0]) -1):
                     for xx in range(0, len(dataOfElement)):
                         for yy in range(0, len(dataOfElement[0])):
                             if(x == xOfElement + xx and y == yOfElement + yy):
