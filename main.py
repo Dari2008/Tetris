@@ -2,7 +2,7 @@ from Element import Element
 from Color import Color
 from CellElement import CellElement
 from Score import Score
-from LedMatrix import LedMatrix
+# from LedMatrix import LedMatrix
 from time import sleep
 import glob
 import random
@@ -16,12 +16,12 @@ class Main:
     def __init__(self) -> None:
         
         self.loadAllElements()
+        self.currentElementBag = Main.ELEMENTS.copy()
 
         self.matrix = []
         self.lost = False
         self.score = Score()
-        self.ledMatrix = LedMatrix(18)
-        self.ledMatrix.clear()
+        # self.ledMatrix = LedMatrix(18)
 
 
         self.currentElement: Element = None
@@ -46,46 +46,15 @@ class Main:
         if(self.currentElement != None and not onlyControllNoMoveDown):
             self.currentElement.moveDown(self.matrix)
         self.lost = self.lost or self.checkForLoose()
-
-        if(self.lost):
-            for x in range(0, len(self.matrix)):
-                for y in range(0, len(self.matrix[0])):
-                    if(self.score.isNewHighscore()):
-                        self.ledMatrix.setColorAtPixel(Color(0, 255, 0), x, y)
-                    else:
-                        self.ledMatrix.setColorAtPixel(Color(255, 0, 0), x, y)
-            self.ledMatrix.show()
-            self.printMatrix()
-            return
         
         self.printMatrix()
-        self.updateMatrix()
+        # self.updateMatrix()
 
     def updateMatrix(self):
         # pass
-
-        dataOfElement = self.currentElement.getElementData()
-        xOfElement = self.currentElement.getX()
-        yOfElement = self.currentElement.getY()
-
-        for y in range(0, len(self.matrix[0])):
-            for x in range(0, len(self.matrix)):
-                if True:
-
-                    if(xOfElement <= x <= xOfElement + len(dataOfElement) - 1 and yOfElement <= y <= yOfElement + len(dataOfElement[0]) - 1):
-                        for xx in range(0, len(dataOfElement)):
-                            for yy in range(0, len(dataOfElement[0])):
-                                    if(x == xOfElement + xx and y == yOfElement + yy):
-                                        if(dataOfElement[xx][yy] == 1):
-                                            self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
-                                            continue
-                                        else:
-                                            self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
-                    else:
-                        self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
-                else:
-                    self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
-        self.ledMatrix.show()
+        for x in range(0, len(self.matrix)):
+            for y in range(0, len(self.matrix[0])):
+                self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
 
     def checkForFullLines(self):
         fullLines = 0
@@ -100,11 +69,9 @@ class Main:
                 
         if(fullLines==1):self.score.rowFull()
         elif(fullLines > 1):self.score.multipleLineFull(fullLines)
-        
-
+      
 
     def removeRowAndMoveOthersDown(self, row):
-
         for x in range(0, len(self.matrix)):
             self.matrix[x][row].clearBlock()
 
@@ -117,10 +84,6 @@ class Main:
                         self.matrix[x][y].clearBlock()
                     else:
                         self.matrix[x][y-1].copyTo(self.matrix[x][y])
-                
-
-        
-
 
     def checkForLoose(self) -> bool:
         for x in range(0, len(self.matrix)):
@@ -211,8 +174,10 @@ class Main:
             return element
         
     def newRandomElement(self):
-        num = random.randint(0, len(self.ELEMENTS)-1)
-        self.currentElement = Main.ELEMENTS[num].clone()
+        if(len(self.currentElementBag) == 0):
+            self.currentElementBag = Main.ELEMENTS.copy()
+        num = random.randint(0, len(self.currentElementBag)-1)
+        self.currentElement = self.currentElementBag[num]
 
 
     def loadAllElements(self):
@@ -224,27 +189,22 @@ class Main:
 
     def initMovement(self):
         def onRotateLeft():
-            print("R")
             self.currentElement.rotateLeft(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onRotateRight():
-            print("R")
             self.currentElement.rotateRight(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onMoveLeft():
-            print("L")
             self.currentElement.moveLeft(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onMoveRight():
-            print("M")
             self.currentElement.moveRight(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
         def onMoveDown():
-            print("D")
             self.currentElement.moveDown(self.matrix)
             self.updateGameFrame(onlyControllNoMoveDown=True)
 
