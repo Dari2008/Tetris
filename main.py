@@ -43,10 +43,10 @@ class Main:
             self.updateGameFrame()
 
     def newElementBag(self):
-        self.currentElementBag = Main.ELEMENTS.clone()
+        self.currentElementBag = Main.ELEMENTS.copy()
 
-        for element in Main.ELEMENTS.clone():
-            self.currentElementBag.append(element.clone())
+        for element in Main.ELEMENTS.copy():
+            self.currentElementBag.append(element)
 
     def updateGameFrame(self, onlyControllNoMoveDown=False):
         if(self.lost): return
