@@ -240,7 +240,7 @@ class Main:
             self.newElementBag()
         num = random.randint(0, len(self.ELEMENTS)-1)
         self.currentElement = self.currentElementBag[num].clone()
-        self.currentElementBag.remove(self.currentElement)
+        self.currentElementBag.remove(self.currentElementBag[num])
         self.tmpElement = self.currentElement.clone()
 
 
