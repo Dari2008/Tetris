@@ -81,6 +81,7 @@ class Main:
         self.tmpElement.moveDownCompletly(self.matrix, True)
         xOfTmpElement = self.tmpElement.getX()
         yOfTmpElement = self.tmpElement.getY()
+        tmpElementData = self.tmpElement.getElementData()
 
         for y in range(0, len(self.matrix[0])):
             for x in range(0, len(self.matrix)):
@@ -94,11 +95,11 @@ class Main:
                                     if(dataOfElement[xx][yy] == 1):
                                         self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
                                         continue
-                    elif(xOfTmpElement <= x and xOfTmpElement + len(dataOfElement) - 1 >= x and yOfTmpElement <= y and yOfTmpElement + len(dataOfElement[0]) - 1 >= y):
-                        for xx in range(0, len(dataOfElement)):
-                            for yy in range(0, len(dataOfElement[0])):
+                    elif(xOfTmpElement <= x and xOfTmpElement + len(tmpElementData) - 1 >= x and yOfTmpElement <= y and yOfTmpElement + len(tmpElementData[0]) - 1 >= y):
+                        for xx in range(0, len(tmpElementData)):
+                            for yy in range(0, len(tmpElementData[0])):
                                 if(x == xOfTmpElement + xx and y == yOfTmpElement + yy):
-                                    if(dataOfElement[xx][yy] == 1):
+                                    if(tmpElementData[xx][yy] == 1):
                                         self.ledMatrix.setColorAtPixel(self.tmpElement.getColor(), x, y)
                                         continue
                     else:
