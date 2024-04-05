@@ -121,6 +121,8 @@ class Main:
             #from the outside to the inside
             self.matrix[x][row].clearBlock()
             self.matrix[width-1-x][row].clearBlock()
+            self.updateMatrix()
+
 
         for x in range(0, len(self.matrix)):
             for y in range(row, -1, -1):
