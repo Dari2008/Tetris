@@ -88,6 +88,7 @@ class Main:
 
         for y in range(0, len(self.matrix[0])):
             for x in range(0, len(self.matrix)):
+                print(x, y)
                 if xOfElement <= x and xOfElement >= x and yOfElement <= y and yOfElement >= y:
                     if(dataOfElement[x-xOfElement][y-yOfElement] == 1):
                         self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
