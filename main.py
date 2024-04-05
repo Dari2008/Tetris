@@ -6,7 +6,7 @@ from LedMatrix import LedMatrix
 from time import sleep
 import glob
 import random
-# import keyboard
+import keyboard
 
 class Main:
         
