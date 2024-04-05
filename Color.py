@@ -26,7 +26,7 @@ class Color:
     @staticmethod
     def darken(color, amount):
         h, s, l = color.toHSL()
-        l = max(min(l - amount, 100), 0)
+        l = amount/100
         r, g, b = colorsys.hls_to_rgb(h, l, s)
         print(h, s, l)
         return Color(g, r, b)
