@@ -6,7 +6,7 @@ from LedMatrix import LedMatrix
 from time import sleep
 import glob
 import random
-import keyboard
+# import keyboard
 
 class Main:
         
@@ -167,35 +167,36 @@ class Main:
 
 
     def printMatrix(self, showCurrentElement=True):
-        return
-        spacer = ""
-        result = ""
-        dataOfElement = self.currentElement.getElementData()
-        xOfElement = self.currentElement.getX()
-        yOfElement = self.currentElement.getY()
+        pass
+        # Uncomment the following line to display the matrix
+        # spacer = ""
+        # result = ""
+        # dataOfElement = self.currentElement.getElementData()
+        # xOfElement = self.currentElement.getX()
+        # yOfElement = self.currentElement.getY()
 
-        for y in range(0, len(self.matrix[0])):
-            result += "["
-            for x in range(0, len(self.matrix)):
-                if(showCurrentElement and self.currentElement != None):
+        # for y in range(0, len(self.matrix[0])):
+        #     result += "["
+        #     for x in range(0, len(self.matrix)):
+        #         if(showCurrentElement and self.currentElement != None):
 
-                    if(xOfElement <= x <= xOfElement + len(dataOfElement) - 1 and yOfElement <= y <= yOfElement + len(dataOfElement[0]) - 1):
-                        for xx in range(0, len(dataOfElement)):
-                            for yy in range(0, len(dataOfElement[0])):
-                                    if(x == xOfElement + xx and y == yOfElement + yy):
-                                        if(dataOfElement[xx][yy] == 1):
-                                            result += str("█") + spacer#self.currentElement.getColor()
-                                            continue
-                                        else:
-                                            result += str(self.matrix[x][y]) + spacer
-                    else:
-                        result += str(self.matrix[x][y]) + spacer
-                else:
-                    result += str(self.matrix[x][y]) + spacer
-            if(len(spacer) != 0):
-                result = result[:-len(spacer)]
-            result += "]\n"
-        print(result)
+        #             if(xOfElement <= x <= xOfElement + len(dataOfElement) - 1 and yOfElement <= y <= yOfElement + len(dataOfElement[0]) - 1):
+        #                 for xx in range(0, len(dataOfElement)):
+        #                     for yy in range(0, len(dataOfElement[0])):
+        #                             if(x == xOfElement + xx and y == yOfElement + yy):
+        #                                 if(dataOfElement[xx][yy] == 1):
+        #                                     result += str("█") + spacer#self.currentElement.getColor()
+        #                                     continue
+        #                                 else:
+        #                                     result += str(self.matrix[x][y]) + spacer
+        #             else:
+        #                 result += str(self.matrix[x][y]) + spacer
+        #         else:
+        #             result += str(self.matrix[x][y]) + spacer
+        #     if(len(spacer) != 0):
+        #         result = result[:-len(spacer)]
+        #     result += "]\n"
+        # print(result)
 
     def loadElement(self, path) -> Element:
         with open(path, "r") as file:
