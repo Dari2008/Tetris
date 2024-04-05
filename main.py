@@ -87,23 +87,17 @@ class Main:
 
 
         for y in range(0, len(self.matrix[0])):
-            for x in range(0, len(self.matrix)):                        
-                #Check if the current pixel is part of the element
-                #and render the current element at the smallest y position that it can be
-                if(xOfElement <= x <= xOfElement + len(dataOfElement) -1 and yOfElement <= y <= yOfElement + len(dataOfElement[0]) -1):
-                    for xx in range(0, len(dataOfElement)):
-                        for yy in range(0, len(dataOfElement[0])):
-                            if(x == xOfElement + xx and y == yOfElement + yy):
-                                if(dataOfElement[xx][yy] == 1):
-                                    print("Element")
-                                    self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
-                                    continue
-                                else:
-                                    print("Element1")
-                                    self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
-                            else:
-                                print("Element2")
-                                self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
+            for x in range(0, len(self.matrix)):
+                if xOfElement <= x and xOfElement >= x and yOfElement <= y and yOfElement >= y:
+                    if(dataOfElement[x-xOfElement][y-yOfElement] == 1):
+                        self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
+                    else:
+                        self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
+                elif xOfTmpElement <= x and xOfTmpElement >= x and yOfTmpElement <= y and yOfTmpElement >= y:
+                    if(tmpElementData[x-xOfTmpElement][y-yOfTmpElement] == 1):
+                        self.ledMatrix.setColorAtPixel(self.tmpElement.getColor(), x, y)
+                    else:
+                        self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
                 else:
                     self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
         self.ledMatrix.show()
