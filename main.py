@@ -56,16 +56,16 @@ class Main:
         self.lost = self.lost or self.checkForLoose()
 
         self.updateMatrix()
-        # if(self.lost):
-        #     for x in range(0, len(self.matrix)):
-        #         for y in range(0, len(self.matrix[0])):
-        #             if(self.score.isNewHighscore()):
-        #                 self.ledMatrix.setColorAtPixel(Color(0, 255, 0), x, y)
-        #             else:
-        #                 self.ledMatrix.setColorAtPixel(Color(255, 0, 0), x, y)
-        #     self.ledMatrix.show()
-        #     self.printMatrix()
-        #     return
+        if(self.lost):
+            for x in range(0, len(self.matrix)):
+                for y in range(0, len(self.matrix[0])):
+                    if(self.score.isNewHighscore()):
+                        self.ledMatrix.setColorAtPixel(Color(0, 255, 0), x, y)
+                    else:
+                        self.ledMatrix.setColorAtPixel(Color(255, 0, 0), x, y)
+            self.ledMatrix.show()
+            # self.printMatrix()
+            return
         
         self.printMatrix()
 
@@ -88,13 +88,14 @@ class Main:
 
         for y in range(0, len(self.matrix[0])):
             for x in range(0, len(self.matrix)):
-                print(x, y)
                 if xOfElement <= x and xOfElement >= x and yOfElement <= y and yOfElement >= y:
+                    print(x, y)
                     if(dataOfElement[x-xOfElement][y-yOfElement] == 1):
                         self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
                     else:
                         self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
                 elif xOfTmpElement <= x and xOfTmpElement >= x and yOfTmpElement <= y and yOfTmpElement >= y:
+                    print(x, y)
                     if(tmpElementData[x-xOfTmpElement][y-yOfTmpElement] == 1):
                         self.ledMatrix.setColorAtPixel(self.tmpElement.getColor(), x, y)
                     else:
