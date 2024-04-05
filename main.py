@@ -76,7 +76,6 @@ class Main:
         xOfElement = self.currentElement.getX()
         yOfElement = self.currentElement.getY()
 
-
         self.tmpElement.setElementData(self.currentElement.getElementData())
         self.tmpElement.setX(self.currentElement.getX())
         self.tmpElement.setY(self.currentElement.getY())
@@ -85,18 +84,17 @@ class Main:
         xOfTmpElement = self.tmpElement.getX()
         yOfTmpElement = self.tmpElement.getY()
 
-
         for y in range(0, len(self.matrix[0])):
             for x in range(0, len(self.matrix)):
-                if xOfElement < x and xOfElement + len(dataOfElement) >= x and yOfElement < y and yOfElement + len(dataOfElement[0]) >= y:
+                if xOfElement < x and xOfElement + len(dataOfElement[0]) > x and yOfElement < y and yOfElement + len(dataOfElement) > y:
                     print(x, y)
-                    if(dataOfElement[x - xOfElement][y-yOfElement] == 1):
+                    if(dataOfElement[y - yOfElement][x - xOfElement] == 1):
                         self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
                     else:
                         self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
-                elif xOfTmpElement < x and xOfTmpElement + len(dataOfElement) >= x and yOfTmpElement < y and yOfTmpElement + len(dataOfElement[0]) >= y:
+                elif xOfTmpElement < x and xOfTmpElement + len(tmpElementData[0]) > x and yOfTmpElement < y and yOfTmpElement + len(tmpElementData) > y:
                     print(x, y)
-                    if(tmpElementData[x-xOfTmpElement][y-yOfTmpElement] == 1):
+                    if(tmpElementData[y - yOfTmpElement][x - xOfTmpElement] == 1):
                         self.ledMatrix.setColorAtPixel(self.tmpElement.getColor(), x, y)
                     else:
                         self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
