@@ -161,6 +161,9 @@ class Main:
                 if(data[x][y] == 0):continue
 
                 self.matrix[x + xOffset][y + yOffset].setBlock(data[x][y], element)
+
+        sleep(0.5)
+
         self.newRandomElement()
 
         self.checkForFullLines()
