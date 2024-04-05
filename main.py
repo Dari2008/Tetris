@@ -88,13 +88,13 @@ class Main:
 
         for y in range(0, len(self.matrix[0])):
             for x in range(0, len(self.matrix)):
-                if xOfElement <= x and xOfElement + len(dataOfElement) >= x and yOfElement <= y and yOfElement + len(dataOfElement[0]) >= y:
+                if xOfElement < x and xOfElement + len(dataOfElement) >= x and yOfElement < y and yOfElement + len(dataOfElement[0]) >= y:
                     print(x, y)
-                    if(dataOfElement[x-xOfElement][y-yOfElement] == 1):
+                    if(dataOfElement[x - xOfElement][y-yOfElement] == 1):
                         self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
                     else:
                         self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
-                elif xOfTmpElement <= x and xOfTmpElement + len(dataOfElement) >= x and yOfTmpElement <= y and yOfTmpElement + len(dataOfElement[0]) >= y:
+                elif xOfTmpElement < x and xOfTmpElement + len(dataOfElement) >= x and yOfTmpElement < y and yOfTmpElement + len(dataOfElement[0]) >= y:
                     print(x, y)
                     if(tmpElementData[x-xOfTmpElement][y-yOfTmpElement] == 1):
                         self.ledMatrix.setColorAtPixel(self.tmpElement.getColor(), x, y)
