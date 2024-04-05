@@ -1,3 +1,5 @@
+import colorsys
+
 class Color:
     
     def __init__(self, r, g, b) -> None:
@@ -23,10 +25,14 @@ class Color:
     
     @staticmethod
     def darken(color, amount):
-        r = color.getRed() * (1 - (amount/100))
-        g = color.getGreen() * (1 - (amount/100))
-        b = color.getBlue() * (1 - (amount/100))
+        h, s, l = color.toHSL()
+        l = max(min(l - amount, 100), 0)
+        r, g, b = colorsys.hls_to_rgb(h, l, s)
         return Color(g, r, b)
     
+    def toHSL(self):
+        h, l, s = colorsys.rgb_to_hls(self.r, self.g, self.b)
+        return h, l, s
+
     def __str__(self) -> str:
         return str(self.r) + ":" + str(self.g) + ":" + str(self.b)
