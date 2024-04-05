@@ -87,8 +87,6 @@ class Main:
         xOfTmpElement = self.tmpElement.getX()
         yOfTmpElement = self.tmpElement.getY()
 
-        self.ledMatrix.clear()
-
 
         for y in range(0, len(self.matrix[0])):
             for x in range(0, len(self.matrix)):                        
