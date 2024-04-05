@@ -90,7 +90,7 @@ class Main:
                     print(x, y)
                     self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
                 elif xOfTmpElement < x and xOfTmpElement + len(tmpElementData[0]) > x and yOfTmpElement < y and yOfTmpElement + len(tmpElementData) > y and tmpElementData[y - yOfTmpElement][x - xOfTmpElement] == 1:
-                    self.ledMatrix.setColorAtPixel(Color.darken(self.tmpElement.getColor(), 30), x, y)
+                    self.ledMatrix.setColorAtPixel(Color.darken(self.tmpElement.getColor(), 1), x, y)
                 else:
                     self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
         self.ledMatrix.show()

@@ -28,6 +28,7 @@ class Color:
         h, s, l = color.toHSL()
         l = max(min(l - amount, 100), 0)
         r, g, b = colorsys.hls_to_rgb(h, l, s)
+        print(h, s, l)
         return Color(g, r, b)
     
     def toHSL(self):
