@@ -55,6 +55,7 @@ class Main:
             self.currentElement.moveDown(self.matrix)
         self.lost = self.lost or self.checkForLoose()
 
+        self.updateMatrix()
         if(self.lost):
             for x in range(0, len(self.matrix)):
                 for y in range(0, len(self.matrix[0])):
@@ -67,7 +68,6 @@ class Main:
             return
         
         self.printMatrix()
-        self.updateMatrix()
 
     def updateMatrix(self):
         # pass
