@@ -229,12 +229,15 @@ class Main:
             return element
         
     def newRandomElement(self):
-        if(len(self.currentElementBag) == 0):
+        if(len(self.currentElementBag) <= 0):
             self.newElementBag()
-        num = random.randint(0, len(self.ELEMENTS)-1)
-        self.currentElement = self.currentElementBag[num].clone()
-        self.currentElementBag.remove(self.currentElementBag[num])
-        self.tmpElement = self.currentElement.clone()
+        if len(self.currentElementBag) > 0:
+            num = random.randint(0, len(self.currentElementBag)-1)
+            self.currentElement = self.currentElementBag[num].clone()
+            self.currentElementBag.remove(self.currentElementBag[num])
+            self.tmpElement = self.currentElement.clone()
+        else:
+            return self.newRandomElement()
 
 
     def loadAllElements(self):
