@@ -18,9 +18,9 @@ class Color:
     
     @staticmethod
     def lighten(color, amount):
-        r = color.getRed() * (1 + (amount/100))
-        g = color.getGreen() * (1 + (amount/100))
-        b = color.getBlue() * (1 + (amount/100))
+        h, s, l = color.toHSL()
+        l = amount/100
+        r, g, b = colorsys.hls_to_rgb(h, l, s)
         return Color(g, r, b)
     
     @staticmethod
@@ -28,7 +28,6 @@ class Color:
         h, s, l = color.toHSL()
         l = amount/100
         r, g, b = colorsys.hls_to_rgb(h, l, s)
-        print(h, s, l)
         return Color(g, r, b)
     
     def toHSL(self):

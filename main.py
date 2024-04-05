@@ -44,7 +44,6 @@ class Main:
             self.updateGameFrame()
 
     def newElementBag(self):
-        print("new Bag created:")
         self.currentElementBag = Main.ELEMENTS.copy()
 
         for element in Main.ELEMENTS.copy():
@@ -88,7 +87,6 @@ class Main:
         for y in range(0, len(self.matrix[0])):
             for x in range(0, len(self.matrix)):
                 if xOfElement <= x and xOfElement + len(dataOfElement[0]) > x and yOfElement <= y and yOfElement + len(dataOfElement) > y and dataOfElement[x - xOfElement][y - yOfElement] == 1:
-                    print(x, y)
                     self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
                 elif xOfTmpElement <= x and xOfTmpElement + len(tmpElementData[0]) > x and yOfTmpElement <= y and yOfTmpElement + len(tmpElementData) > y and tmpElementData[x - xOfTmpElement][y - yOfTmpElement] == 1:
                     self.ledMatrix.setColorAtPixel(Color.darken(self.tmpElement.getColor(), 2), x, y)
