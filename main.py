@@ -7,6 +7,7 @@ from time import sleep
 import glob
 import random
 import keyboard
+import math
 
 class Main:
         
@@ -113,8 +114,14 @@ class Main:
 
     def removeRowAndMoveOthersDown(self, row):
 
-        for x in range(0, len(self.matrix)):
-            self.matrix[x][row].clearBlock()
+        width = len(self.matrix)
+        for x in range(0, math.floor(width/2)):
+            sleep(0.1)
+            x1,x2 = width - x - 1, x
+            if(x2 >= len(self.matrix) or x2 <= len(self.matrix)):
+                self.matrix[x1][row].clearBlock()
+            if(x1 >= len(self.matrix) or x1 <= len(self.matrix)):
+                self.matrix[x2][row].clearBlock()
 
         for x in range(0, len(self.matrix)):
             for y in range(row, -1, -1):
