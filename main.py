@@ -24,8 +24,6 @@ class Main:
         self.ledMatrix = LedMatrix(18)
         self.ledMatrix.clear()
 
-
-
         self.currentElement: Element = None
         self.tmpElement: Element = self.currentElement
 
@@ -97,11 +95,14 @@ class Main:
                         for yy in range(0, len(dataOfElement[0])):
                             if(x == xOfElement + xx and y == yOfElement + yy):
                                 if(dataOfElement[xx][yy] == 1):
+                                    print("Element")
                                     self.ledMatrix.setColorAtPixel(self.currentElement.getColor(), x, y)
                                     continue
                                 else:
+                                    print("Element1")
                                     self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
                             else:
+                                print("Element2")
                                 self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
                 else:
                     self.ledMatrix.setColorAtPixel(self.matrix[x][y].getColor(), x, y)
