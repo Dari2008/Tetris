@@ -56,16 +56,16 @@ class Main:
         self.lost = self.lost or self.checkForLoose()
 
         self.updateMatrix()
-        if(self.lost):
-            for x in range(0, len(self.matrix)):
-                for y in range(0, len(self.matrix[0])):
-                    if(self.score.isNewHighscore()):
-                        self.ledMatrix.setColorAtPixel(Color(0, 255, 0), x, y)
-                    else:
-                        self.ledMatrix.setColorAtPixel(Color(255, 0, 0), x, y)
-            self.ledMatrix.show()
-            self.printMatrix()
-            return
+        # if(self.lost):
+        #     for x in range(0, len(self.matrix)):
+        #         for y in range(0, len(self.matrix[0])):
+        #             if(self.score.isNewHighscore()):
+        #                 self.ledMatrix.setColorAtPixel(Color(0, 255, 0), x, y)
+        #             else:
+        #                 self.ledMatrix.setColorAtPixel(Color(255, 0, 0), x, y)
+        #     self.ledMatrix.show()
+        #     self.printMatrix()
+        #     return
         
         self.printMatrix()
 
